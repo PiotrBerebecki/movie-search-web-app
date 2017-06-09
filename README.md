@@ -25,8 +25,6 @@ npm start
 
 ## Cool stuff included in this project
 
-- [pre-push](https://www.npmjs.com/package/pre-push) npm module has been included so that all tests are run before every push. This ensures that broken code is not published.
-
 - `package.json` specifies which files are [included in Jest code coverage report](https://facebook.github.io/jest/docs/configuration.html#collectcoveragefrom-array):
 
   ```javascript
