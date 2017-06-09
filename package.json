@@ -16,6 +16,6 @@
     "eject": "react-scripts eject"
   },
   "jest": {
-    "collectCoverageFrom": ["**/*.js", "!**/node_modules/**", "!**/src/index.js"]
+    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**", "!**/src/index.js"]
   }
 }
