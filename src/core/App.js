@@ -4,10 +4,23 @@ import Header from './Header';
 import SearchResults from './../views/SearchResults';
 
 class App extends Component {
+  state = {
+    searchText: '',
+  };
+
+  handleNewText = searchText => {
+    console.log('text', searchText);
+    this.setState({
+      searchText,
+    });
+  };
+
   render() {
+    const { searchText } = this.state;
+
     return (
       <div>
-        <Header />
+        <Header searchText={searchText} handleNewText={this.handleNewText} />
         <SearchResults />
       </div>
     );
