@@ -7,14 +7,18 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "npm-run-all": "^4.0.2",
     "pre-push": "^0.1.1",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "surge": "^0.19.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "surge": "surge ./build --domain movie-search-web-app.surge.sh",
+    "deploy": "npm-run-all -s build surge"
   },
   "jest": {
     "collectCoverageFrom": [
