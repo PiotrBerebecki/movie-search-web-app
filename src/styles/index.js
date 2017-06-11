@@ -67,9 +67,22 @@ export const GuideText = styled.p`
 `;
 
 export const Movies = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
   color: white;
 `;
 
-export const Movie = styled.li`
-  margin-top: 4rem;
+export const MovieWrapper = styled.li`
+  flex: 1 0 30%;
+  margin-top: 1rem;
+`;
+
+export const MovieImage = styled.div`
+  border: solid 1px white;
+  width: 100%;
+  height: 15rem;
+  background-image: url(${props => props.src});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;

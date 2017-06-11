@@ -1,13 +1,13 @@
 import React from 'react';
 
-// import { MovieWrapper } from './../../styles';
+import { MovieWrapper, MovieImage } from './../../styles';
 
-function Movie(props) {
-  console.log(props.children);
+function Movie({ title, poster_path, id }) {
+  console.log(poster_path, title, id);
   return (
-    <div>
-      {props.children}
-    </div>
+    <MovieWrapper>
+      <MovieImage src={`https://image.tmdb.org/t/p/original${poster_path}`} />
+    </MovieWrapper>
   );
 }
 

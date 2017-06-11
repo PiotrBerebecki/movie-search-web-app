@@ -7,7 +7,7 @@ class SearchResults extends Component {
   render() {
     const { guideText, movies } = this.props;
     const renderMovies = movies.map(movie => (
-      <Movie key={movie.id}>{movie.title}</Movie>
+      <Movie key={movie.id} {...movie} />
     ));
 
     return (
