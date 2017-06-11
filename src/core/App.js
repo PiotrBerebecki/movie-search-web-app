@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
 
+import theme from './../styles/theme';
+import { AppWrapper } from './../styles';
 import Header from './Header';
 import MovieList from './../views/MovieList';
-import { AppWrapper } from './../styles';
 
-const guideTextSuccess = 'Matching movies';
+const guideTextSuccess = 'We have found the following movies';
 const guideTextFailure =
-  "Sorry, we haven't found any matching movies. You may be interested in these.";
+  "Sorry, we haven't found any matching movies, but you may be interested in these";
 const guideTextDefault = 'Popular movies';
 
 class App extends Component {
@@ -67,13 +69,22 @@ class App extends Component {
   render() {
     const { searchText, guideText, defaultMovies, searchedMovies } = this.state;
     return (
-      <AppWrapper>
-        <Header searchText={searchText} handleNewText={this.handleNewText} />
-        <MovieList
-          guideText={guideText}
-          movies={searchedMovies.length > 0 ? searchedMovies : defaultMovies}
-        />
-      </AppWrapper>
+      <ThemeProvider theme={theme}>
+        <div>
+          <AppWrapper>
+            <Header
+              searchText={searchText}
+              handleNewText={this.handleNewText}
+            />
+            <MovieList
+              guideText={guideText}
+              movies={
+                searchedMovies.length > 0 ? searchedMovies : defaultMovies
+              }
+            />
+          </AppWrapper>
+        </div>
+      </ThemeProvider>
     );
   }
 }
