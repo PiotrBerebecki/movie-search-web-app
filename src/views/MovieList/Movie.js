@@ -7,7 +7,7 @@ import {
   MovieTitle,
   MovieOverview,
 } from './../../styles';
-import trimText from './../../helpers/trimText';
+import trimTextToFullWord from './../../helpers/trimTextToFullWord';
 
 const baseUrlCover = 'https://image.tmdb.org/t/p/w500';
 
@@ -17,7 +17,7 @@ function Movie({ cover, title, summary }) {
       <MovieImage url={`${baseUrlCover}${cover}`} />
       <MovieInfo>
         <MovieTitle>{title}</MovieTitle>
-        <MovieOverview>{trimText(summary, 100)}</MovieOverview>
+        <MovieOverview>{trimTextToFullWord(summary, 0, 100)}</MovieOverview>
       </MovieInfo>
     </MovieCard>
   );
