@@ -1,13 +1,25 @@
 import React from 'react';
 
-import { MovieWrapper, MovieImage } from './../../styles';
+import {
+  MovieCard,
+  MovieImage,
+  MovieInfo,
+  MovieTitle,
+  MovieOverview,
+} from './../../styles';
+import trimText from './../../helpers/trimText';
 
-function Movie({ title, poster_path, id }) {
-  console.log(poster_path, title, id);
+const baseUrlCover = 'https://image.tmdb.org/t/p/w500';
+
+function Movie({ cover, title, summary }) {
   return (
-    <MovieWrapper>
-      <MovieImage src={`https://image.tmdb.org/t/p/original${poster_path}`} />
-    </MovieWrapper>
+    <MovieCard>
+      <MovieImage url={`${baseUrlCover}${cover}`} />
+      <MovieInfo>
+        <MovieTitle>{title}</MovieTitle>
+        <MovieOverview>{trimText(summary, 100)}</MovieOverview>
+      </MovieInfo>
+    </MovieCard>
   );
 }
 

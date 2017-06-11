@@ -10,6 +10,7 @@ const guideTextSuccess = 'We have found the following movies';
 const guideTextFailure =
   "Sorry, we haven't found any matching movies, but you may be interested in these";
 const guideTextDefault = 'Popular movies';
+const summaryDefault = 'Description coming soon';
 
 class App extends Component {
   constructor() {
@@ -41,8 +42,19 @@ class App extends Component {
               : guideTextFailure
           : guideTextDefault;
 
+        const moviesToAdd = json.results
+          .filter(movie => movie.backdrop_path)
+          .map(movie => {
+            return {
+              id: movie.id,
+              title: movie.title,
+              cover: movie.backdrop_path,
+              summary: movie.overview || summaryDefault,
+            };
+          });
+
         this.setState({
-          [typeOfMovies]: json.results.filter(result => result.poster_path),
+          [typeOfMovies]: moviesToAdd,
           guideText,
         });
       })
