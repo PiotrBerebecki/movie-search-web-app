@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 import Header from './Header';
-import SearchResults from './../views/SearchResults';
+import MovieList from './../views/MovieList';
 
 class App extends Component {
   state = {
     searchText: '',
+    movies: [{ title: 'Matrix', id: '1' }, { title: 'Terminator', id: '2' }],
+    guideText: 'Popular movies',
   };
 
   handleNewText = searchText => {
@@ -16,12 +18,12 @@ class App extends Component {
   };
 
   render() {
-    const { searchText } = this.state;
+    const { searchText, movies, guideText } = this.state;
 
     return (
       <div>
         <Header searchText={searchText} handleNewText={this.handleNewText} />
-        <SearchResults />
+        <MovieList guideText={guideText} movies={movies} />
       </div>
     );
   }
