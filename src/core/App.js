@@ -50,7 +50,8 @@ class App extends Component {
       });
   };
 
-  handleNewText = searchText => {
+  handleNewText = event => {
+    const searchText = event.target.value;
     clearTimeout(this.state.searchTextTimeout);
 
     this.setState({
