@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Header from './Header';
 import MovieList from './../views/MovieList';
+import { AppWrapper } from './../styles';
 
 const guideTextSuccess = 'Matching movies';
 const guideTextFailure =
@@ -66,13 +67,13 @@ class App extends Component {
   render() {
     const { searchText, guideText, defaultMovies, searchedMovies } = this.state;
     return (
-      <div>
+      <AppWrapper>
         <Header searchText={searchText} handleNewText={this.handleNewText} />
         <MovieList
           guideText={guideText}
           movies={searchedMovies.length > 0 ? searchedMovies : defaultMovies}
         />
-      </div>
+      </AppWrapper>
     );
   }
 }
