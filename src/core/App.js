@@ -3,43 +3,63 @@ import React, { Component } from 'react';
 import Header from './Header';
 import MovieList from './../views/MovieList';
 
+const guideTextSuccess = 'Matching movies';
+const guideTextFailure =
+  "Sorry, we haven't found any matching movies. You may be interested in these.";
+const guideTextDefault = 'Popular movies';
+
 class App extends Component {
   state = {
     searchText: '',
     defaultMovies: [],
-    guideText: 'Popular movies',
+    searchedMovies: [],
+    guideText: guideTextDefault,
   };
 
   componentDidMount() {
     this.getMovies('defaultMovies');
   }
 
-  getMovies(typeOfMovies) {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&with_genres=878`
-    )
+  getMovies = (typeOfMovies, searchText) => {
+    const url = searchText
+      ? `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${encodeURIComponent(searchText)}`
+      : `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&with_genres=878`;
+
+    fetch(url)
       .then(response => response.json())
       .then(json => {
-        this.setState({ [typeOfMovies]: json.results });
+        const guideText = searchText
+          ? json.results && json.results.length > 0
+              ? guideTextSuccess
+              : guideTextFailure
+          : guideTextDefault;
+
+        this.setState({
+          [typeOfMovies]: json.results,
+          searchText: searchText ? searchText : '',
+          guideText,
+        });
       })
       .catch(err => {
-        console.log('Caught error', err);
+        this.setState({
+          guideText: guideTextFailure,
+        });
       });
-  }
+  };
 
   handleNewText = searchText => {
-    console.log('text', searchText);
-    this.setState({
-      searchText,
-    });
+    this.getMovies('searchedMovies', searchText);
   };
 
   render() {
-    const { searchText, defaultMovies, guideText } = this.state;
+    const { searchText, guideText, defaultMovies, searchedMovies } = this.state;
     return (
       <div>
         <Header searchText={searchText} handleNewText={this.handleNewText} />
-        <MovieList guideText={guideText} movies={defaultMovies} />
+        <MovieList
+          guideText={guideText}
+          movies={searchedMovies.length > 0 ? searchedMovies : defaultMovies}
+        />
       </div>
     );
   }
