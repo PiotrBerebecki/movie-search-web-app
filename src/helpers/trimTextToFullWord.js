@@ -1,6 +1,5 @@
 /**
  * Shortens long text.
- *
  * @param  {string} txt  Text to be shortened
  * @param  {number} from Start index
  * @param  {number} to   End index
@@ -13,5 +12,5 @@ export default (txt, from, to) => {
       indexToFinish += 1;
     }
   }
-  return txt ? `${txt.slice(from, indexToFinish)}` : '';
+  return txt && `${txt.slice(from, indexToFinish)}`;
 };
