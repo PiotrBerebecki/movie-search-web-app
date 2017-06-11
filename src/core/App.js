@@ -42,7 +42,7 @@ class App extends Component {
           : guideTextDefault;
 
         this.setState({
-          [typeOfMovies]: json.results,
+          [typeOfMovies]: json.results.filter(result => result.poster_path),
           guideText,
         });
       })
