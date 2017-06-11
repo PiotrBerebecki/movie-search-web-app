@@ -25,6 +25,8 @@ npm start
 
 ## Documentation
 
+- To avoid making too many API request, network calls are not carried out on each keydown. Instead a delay of 500ms is applied.
+
 - To avoid unexpected requests to the server the movie query string is being encoded with the [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) function. For example, when searching for `matrix reloaded` the query string becomes `matrix%20reloaded`.
 
 - `package.json` specifies which files are [included in Jest code coverage report](https://facebook.github.io/jest/docs/configuration.html#collectcoveragefrom-array):

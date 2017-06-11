@@ -9,12 +9,16 @@ const guideTextFailure =
 const guideTextDefault = 'Popular movies';
 
 class App extends Component {
-  state = {
-    searchText: '',
-    defaultMovies: [],
-    searchedMovies: [],
-    guideText: guideTextDefault,
-  };
+  constructor() {
+    super();
+    this.state = {
+      searchText: '',
+      searchTextTimeout: 0,
+      defaultMovies: [],
+      searchedMovies: [],
+      guideText: guideTextDefault,
+    };
+  }
 
   componentDidMount() {
     this.getMovies('defaultMovies');
@@ -36,7 +40,6 @@ class App extends Component {
 
         this.setState({
           [typeOfMovies]: json.results,
-          searchText: searchText ? searchText : '',
           guideText,
         });
       })
@@ -48,7 +51,15 @@ class App extends Component {
   };
 
   handleNewText = searchText => {
-    this.getMovies('searchedMovies', searchText);
+    clearTimeout(this.state.searchTextTimeout);
+
+    this.setState({
+      searchText,
+      searchTextTimeout: setTimeout(
+        () => this.getMovies('searchedMovies', searchText),
+        500
+      ),
+    });
   };
 
   render() {
