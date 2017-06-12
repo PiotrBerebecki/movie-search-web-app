@@ -10,8 +10,7 @@ import {
 import trimTextToFullWord from './../../helpers/trimTextToFullWord';
 import addThreeDots from './../../helpers/addThreeDots';
 import pipe from './../../helpers/pipe';
-
-const baseUrlCover = 'https://image.tmdb.org/t/p/w500';
+import { baseUrlCover } from './../../constants/movieDb';
 
 function Movie({ cover, title, summary }) {
   return (

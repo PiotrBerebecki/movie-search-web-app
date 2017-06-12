@@ -6,11 +6,13 @@ import { AppWrapper } from './../styles';
 import Header from './Header';
 import MovieList from './../views/MovieList';
 
-const guideTextSuccess = 'We have found the following movies';
-const guideTextFailure =
-  "Sorry, we haven't found any matching movies, but you may be interested in these";
-const guideTextDefault = 'Popular movies';
-const summaryDefault = 'Description coming soon';
+import { getSearchUrl, getDiscoverUrl } from './../constants/movieDb';
+import {
+  guideTextSuccess,
+  guideTextFailure,
+  guideTextDefault,
+  summaryDefault,
+} from './../constants/textSnippets';
 
 class App extends Component {
   constructor() {
@@ -30,8 +32,8 @@ class App extends Component {
 
   getMovies = (typeOfMovies, searchText) => {
     const url = searchText
-      ? `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${encodeURIComponent(searchText)}`
-      : `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc&with_genres=878`;
+      ? getSearchUrl(process.env.REACT_APP_API_KEY, searchText)
+      : getDiscoverUrl(process.env.REACT_APP_API_KEY);
 
     fetch(url)
       .then(response => response.json())
@@ -82,20 +84,13 @@ class App extends Component {
     const { searchText, guideText, defaultMovies, searchedMovies } = this.state;
     return (
       <ThemeProvider theme={theme}>
-        <div>
-          <AppWrapper>
-            <Header
-              searchText={searchText}
-              handleNewText={this.handleNewText}
-            />
-            <MovieList
-              guideText={guideText}
-              movies={
-                searchedMovies.length > 0 ? searchedMovies : defaultMovies
-              }
-            />
-          </AppWrapper>
-        </div>
+        <AppWrapper>
+          <Header searchText={searchText} handleNewText={this.handleNewText} />
+          <MovieList
+            guideText={guideText}
+            movies={searchedMovies.length > 0 ? searchedMovies : defaultMovies}
+          />
+        </AppWrapper>
       </ThemeProvider>
     );
   }

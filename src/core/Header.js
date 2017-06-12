@@ -8,19 +8,20 @@ import {
   MagnifyingGlass,
   SearchField,
 } from './../styles';
+import { searchFieldPlaceholder } from './../constants/textSnippets';
 
 function Header({ handleNewText, searchText }) {
   return (
     <HeaderWrapper>
       <HeaderContainer>
         <SearchGroup>
-        <MagnifyingGlass src={magnifyingGlass} alt="magnifying glass" />
-        <SearchField
-          type="text"
-          onChange={handleNewText}
-          value={searchText}
-          placeholder={searchText ? '' : 'What movie are you looking for?'}
-        />
+          <MagnifyingGlass src={magnifyingGlass} alt="magnifying glass" />
+          <SearchField
+            type="text"
+            onChange={handleNewText}
+            value={searchText}
+            placeholder={searchText ? '' : searchFieldPlaceholder}
+          />
         </SearchGroup>
       </HeaderContainer>
     </HeaderWrapper>
