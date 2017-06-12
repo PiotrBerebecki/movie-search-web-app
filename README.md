@@ -51,3 +51,9 @@ npm start
 - To avoid unexpected requests to the server the movie query string is being encoded with the [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) function. For example, when searching for `matrix reloaded` the query string becomes `matrix%20reloaded`.
 
 - Some movies do not have poster images. These have been omitted from the app.
+
+- Core / common components have been placed in a dedicated folder: `src/core`
+
+- The folder structure has been designed to facilitate adding new views: `src/views`
+
+- A number of functions have been pulled out as separate modules: 'src/helpers'. These makes the app easier to test.
