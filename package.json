@@ -26,7 +26,8 @@
     "collectCoverageFrom": [
       "src/**/*.js",
       "!**/node_modules/**",
-      "!**/src/index.js"
+      "!**/src/index.js",
+      "!**/src/styles/*.js"
     ]
   }
 }
