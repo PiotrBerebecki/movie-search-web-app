@@ -3,6 +3,10 @@
 
 # Movie Search Web App
 
+https://movie-search-web-app.surge.sh/
+
+<img src="./documentation/screencast.gif" width="275px" height="auto">
+
 ## Running this app locally
 
 ```sh
@@ -25,16 +29,25 @@ npm start
 
 ## Documentation
 
-- To avoid making too many API request, network calls are not carried out on each keydown. Instead a delay of 500ms is applied.
+- The app has been tested using the [Jest testing framework](https://facebook.github.io/jest/docs/en/getting-started.html)
 
-- To avoid unexpected requests to the server the movie query string is being encoded with the [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) function. For example, when searching for `matrix reloaded` the query string becomes `matrix%20reloaded`.
-
-- Some movies do not have poster images. These have been omitted from the app.
+  <img src="./documentation/test-coverage.png" width="500px" height="auto">
 
 - `package.json` specifies which files are [included in Jest code coverage report](https://facebook.github.io/jest/docs/configuration.html#collectcoveragefrom-array):
 
   ```javascript
   "jest": {
-    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**", "!**/src/index.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**",
+      "!**/src/index.js",
+      "!**/src/styles/*.js"
+    ]
   }
   ```
+
+- To avoid making too many API requests network calls are not carried out on each keydown. Instead a delay of 500ms is applied.
+
+- To avoid unexpected requests to the server the movie query string is being encoded with the [`encodeURIComponent`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) function. For example, when searching for `matrix reloaded` the query string becomes `matrix%20reloaded`.
+
+- Some movies do not have poster images. These have been omitted from the app.
