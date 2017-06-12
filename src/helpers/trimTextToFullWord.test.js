@@ -1,4 +1,4 @@
-import trimTextToFullWord from './trimTextToFullWord.js';
+import trimTextToFullWord from './trimTextToFullWord';
 
 describe('trimTextToFullWord', () => {
   it('trims text to full word', () => {
