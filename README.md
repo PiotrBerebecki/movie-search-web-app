@@ -11,7 +11,7 @@ https://movie-search-web-app.surge.sh/
 
 ```sh
 git clone https://github.com/PiotrBerebecki/movie-search-web-app.git
-cd reach-the-treasure-game
+cd movie-search-web-app
 npm install
 
 #1. Create a root '.env' file with the following content
@@ -56,4 +56,4 @@ npm start
 
 - The folder structure has been designed to facilitate adding new views: `src/views`
 
-- A number of functions have been pulled out as separate modules: 'src/helpers'. These makes the app easier to test.
+- A number of functions have been pulled out as separate modules: 'src/helpers'. This makes the app easier to test.
